@@ -5,9 +5,12 @@
         static void Main(string[] args)
         {
             int oktet;
-            int ip;
             int førstOkt;
 
+            IP ip = new IP();
+
+            ip.FindKlasse(førstOkt);
+            ip.FindSubnetMask(førstOkt);
 
 
             Console.WriteLine("Oktet Analyser");
@@ -16,7 +19,7 @@
             Console.WriteLine("Din oktet er {0}", førstOkt);
 
 
-
+            
 
 
 
@@ -41,53 +44,57 @@
                 begyndelse:
                 if (førstOkt >= 1 && førstOkt <= 126)
                 {
-                    Console.Clear();
                     Console.WriteLine("Din indtasted oktet {0} ligger i A-klassen", førstOkt);
                 }
                 else if (førstOkt >= 128 && førstOkt <= 191)
                 {
-                    Console.Clear();
                     Console.WriteLine("Din indtasted oktet {0} ligger i B-klassen", førstOkt);
                 }
                 else if (førstOkt >= 192 && førstOkt <= 223)
                 {
-                    Console.Clear();
                     Console.WriteLine("Din indtasted oktet {0} ligger i C-klassen", førstOkt);
                 }
                 else if (førstOkt == 127)
                 {
-                    Console.Clear();
                     Console.WriteLine("Din indtasted oktet {0} er en loopback og ikke en brugbar oktet", førstOkt);
-
                 }
                 else if (førstOkt >= 224 && førstOkt <= 255)
                 {
-                    Console.Clear();
                     Console.WriteLine("Din indtasted oktet {0} er enten en D eller E Klasse", førstOkt);
-                    Console.Clear();
                     Console.WriteLine("Tryk for at indtaste en ny oktet");
-                    Console.Clear();
-                    Console.ReadKey();
                     goto begyndelse;
 
                 }
                 else
                 {
-                    Console.Clear();
                     Console.WriteLine("Din indtasted oktet {0} er en ugyldig oktet Tryk for at prøv igen", førstOkt);
-                    Console.ReadKey();
-                    Console.Clear();
                     goto begyndelse;
                 }
 
 
 
             }
-            public void FindSubnetMask(int oktet)
+            public void FindSubnetMask(int førstOkt)
             {
                 int subnetdefault;
                 int subnetcustom;
-
+                
+                if (førstOkt >= 1 && førstOkt <= 126)
+                {
+                    Console.WriteLine("Standard subnetmaske: 255.0.0.0");
+                }
+                else if (førstOkt >= 128 && førstOkt <= 191)
+                {
+                    Console.WriteLine("Standard subnetmaske: 255.255.0.0");
+                }
+                else if (førstOkt >= 192 && førstOkt <= 223)
+                {
+                    Console.WriteLine("Standard subnetmaske: 255.255.255.0");
+                }
+                else
+                {
+                    Console.WriteLine("Ingen standard subnetmaske");
+                }
             }
 
         }
