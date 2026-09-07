@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Case 1 - Octet Analyser")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+17dea4c5485c8bed9d847c15e7fe862bd88922d1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6923134c25cdfffd91e4a6f7aaa0b9111ffe3a48")]
 [assembly: System.Reflection.AssemblyProductAttribute("Case 1 - Octet Analyser")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Case 1 - Octet Analyser")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
