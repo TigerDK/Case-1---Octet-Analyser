@@ -17,6 +17,8 @@
             string ipKlasse = ip.FindKlasse(førstOkt);
             string subnetMaske = ip.FindSubnetMask(førstOkt);
 
+            // false statement ved brug af !
+
             if (!(førstOkt >= 1 && førstOkt <= 255))
             {
                 Console.WriteLine("Ugyldig oktet");
