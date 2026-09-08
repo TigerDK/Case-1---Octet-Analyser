@@ -6,7 +6,7 @@
         {
             int førstOkt;
             string input;
-
+            
             /* [] betyder at man arbejder med flere værdier i et array
              * FX:
              * string[] ipDele = { "192", "168", "1", "50" };
@@ -18,8 +18,9 @@
             // Her afgøre vi, at denne string arbejder med et array
             string[] ipDele;
 
+            // "begyndelse:" er et label, altså et bestemt sted i koden, som programmet kan hoppe tilbage til
         begyndelse:
-
+            Console.Clear();
             Console.WriteLine("Oktet Analyser");
 
             Console.Write("Indtast første oktet eller fuld IP-adresse: ");
@@ -58,33 +59,54 @@
             // ! tjekker om betingelsen er false, som vi bruger til at tjekke om oktetten er ugyldig
             if (!(førstOkt >= 1 && førstOkt <= 255))
             {
+
+                Console.Clear();
                 Console.WriteLine("Ugyldig oktet");
                 Console.ReadKey();
-                Console.Clear();
-
+                //goto begyndelse; sender programmet tilbage til stedet, hvor label'et "begyndelse:" står
                 goto begyndelse;
             }
             else
             {
+                // Aniver maksimal bredde på udskriften
+                int udskrift_bred = 50;
+                // Beregner hvor mange mellemrum der skal være i venstre side for at centrere udskriften
+                int udskrift_center = (Console.WindowWidth - udskrift_bred) / 2;
+                //new string laver en ny tekststreng med det angivne tegn, som bliver gentaget det antal gange, der er angivet
+                string linje = new string('-', udskrift_bred);
+
+                // \n laver et linjeskift efter teksten
+                Console.Clear();
+                // Flytter markøren, så udskriften starter ved den beregnede center-position
+                Console.SetCursorPosition(udskrift_center, Console.CursorTop);
+                Console.WriteLine(linje);
+
+                Console.SetCursorPosition(udskrift_center, Console.CursorTop);
+                Console.WriteLine("Konklusion");
+                Console.SetCursorPosition(udskrift_center, Console.CursorTop);
+                Console.WriteLine(linje);
+                Console.SetCursorPosition(udskrift_center, Console.CursorTop);
+                Console.WriteLine("Analyse af oktet {0}:\n", førstOkt);
+                Console.SetCursorPosition(udskrift_center, Console.CursorTop);                                                    
+                Console.WriteLine("IP-Klass: {0}\n", ipKlasse);
+                Console.SetCursorPosition(udskrift_center, Console.CursorTop);
+                Console.WriteLine("Default subnetmaske: {0}\n", subnetMaske);
+                Console.SetCursorPosition(udskrift_center, Console.CursorTop);
+                Console.WriteLine(linje);
+                Console.SetCursorPosition(udskrift_center, Console.CursorTop);
+                Console.WriteLine("Tryk for at afslutte\n");
+                Console.SetCursorPosition(udskrift_center, Console.CursorTop);
+                Console.WriteLine(linje);   
                 
-                Console.WriteLine("--------------------------------------------");      
-                Console.WriteLine("             Konklusion");                           
-                Console.WriteLine("--------------------------------------------");      
-                Console.WriteLine("Din oktet {0} svarer til", førstOkt);                
-                Console.WriteLine();                                                    
-                Console.WriteLine("IP-Klass: {0}", ipKlasse);                           
-                Console.WriteLine();                                                    
-                Console.WriteLine("Default subnetmaske: {0}", subnetMaske);             
-                Console.WriteLine("--------------------------------------------");      
-                Console.WriteLine("          Tryk for at afslutte");                    
-                Console.WriteLine("--------------------------------------------");      
+                Console.ReadKey();
+                //goto begyndelse; sender programmet tilbage til stedet, hvor label'et "begyndelse:" står
+                goto begyndelse;
             }
-
-
         }
 
-        /* Vi valgte at bruge Class og public strings..........
-         * 
+        /* Vi valgte at bruge classes og public metoder for at gøre koden mere overskuelig
+         * Metoderne kan have forskellige returtyper, fx string, int eller void
+         * Det gør det nemmere at opdele koden og rette i bestemte dele uden at ændre hele programmet
          */
         class IP
         {
@@ -92,13 +114,14 @@
             {
                 string ip_klasse = "";
 
-                /* a class <= 0 && >= 127 
-                 * b class <= 128 && >= 191 
-                 * c class <= 192 && >= 223 
+                /* a class >= 1 && <= 126
+                 * Loopback == 127
+                 * b class >= 128 && <= 191 
+                 * c class >= 192 && <= 223 
                  * (0-127 A, 128-191 B, 192-223 C, 224-239 D, 240-255 E)
                  */
 
-                
+                // if statement for at finde IP-Klassen
                 if (førstOkt >= 1 && førstOkt <= 126)   
                 {                                       
                     ip_klasse = "A Klasse";             
@@ -118,15 +141,16 @@
                 else if (førstOkt >= 224 && førstOkt <= 255)    
                 {                                       
                     ip_klasse = "D eller E Klasse";     
-                }                                       
+                }
 
+                // Returnerer den opdaterede string efter if-statementet, så værdien kan bruges uden for metoden
                 return ip_klasse;
             }
             public string FindSubnetMask(int førstOkt)
             {
-                
-                string subnetdefault;                               
-                                                                    
+
+                string subnetdefault;
+                // if statement for at finde default subnetmaske                                                    
                 if (førstOkt >= 1 && førstOkt <= 126)               
                 {                                                   
                     subnetdefault = "255.0.0.0";                    
@@ -148,6 +172,7 @@
                     subnetdefault = "har ikke en subnetmaske";
                 }
 
+                // Returnerer den opdaterede string efter if-statementet, så værdien kan bruges uden for metoden
                 return subnetdefault;
 
             }
