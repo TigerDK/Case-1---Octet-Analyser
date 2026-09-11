@@ -1,4 +1,4 @@
-﻿namespace Case_1___Octet_Analyser
+﻿namespace Case_1___Oktet_Analyser
 {
     internal class Program
     {
